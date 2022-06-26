@@ -40,6 +40,13 @@ public class Product {
         this.category = category;
     }
 
+    public Product(String name, String productDescription, double price, String image) {
+        this.name = name;
+        this.productDescription = productDescription;
+        this.price = price;
+        this.image = image;
+    }
+
     public Long getId() {
         return id;
     }

@@ -16,13 +16,19 @@ import java.util.Optional;
 @Slf4j
 @Controller
 @FieldDefaults(makeFinal = true, level = AccessLevel.PRIVATE)
-@RequestMapping("categories")
+//@RequestMapping("categories")
 public class CategoryController {
 
     CategoryService categoryService;
     @Autowired
     public CategoryController(CategoryService categoryService) {
         this.categoryService = categoryService;
+    }
+
+
+    @GetMapping("/")
+    public String adminHome() {
+        return "home";
     }
 
     @GetMapping("/categories")
@@ -58,12 +64,6 @@ public class CategoryController {
         categoryService.deleteCategoryById(id);
         return "redirect:/categories";
     }
-
-
-
-
-
-
 
 }
 

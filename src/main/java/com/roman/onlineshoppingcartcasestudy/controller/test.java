@@ -5,8 +5,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class test {
-    @GetMapping("/")
-    public String home() {
-        return ("<h1>Welcome</h1>");
-    }
+//    @GetMapping("/")
+//    public String home() {
+//        return ("<h1>Welcome</h1>");
+//    }
 }

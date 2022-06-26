@@ -3,6 +3,7 @@ package com.roman.onlineshoppingcartcasestudy.model;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "cart_item")
 public class CartItem {
 
     @Id
@@ -34,7 +35,7 @@ public class CartItem {
                     Account account,
                     int quantity) {
         Id = id;
-        //this.product = product;
+        this.product = product;
         this.account = account;
         this.quantity = quantity;
     }
