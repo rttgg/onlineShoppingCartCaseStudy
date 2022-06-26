@@ -40,4 +40,9 @@ public class CategoryService {
     public void deleteCategoryById(int id) {
         categoryRepo.deleteById(id);
     }
+
+    public void saveOrUpdate(Category c) {
+        log.info(c.toString());
+        categoryRepo.save(c);
+    }
 }
