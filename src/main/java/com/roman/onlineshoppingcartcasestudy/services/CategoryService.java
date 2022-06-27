@@ -30,7 +30,7 @@ public class CategoryService {
         categoryRepo.save(category);
     }
 
-    public List<Category> findAll() {
+    public List<Category> findAllCategory() {
         return categoryRepo.findAll();
     }
 

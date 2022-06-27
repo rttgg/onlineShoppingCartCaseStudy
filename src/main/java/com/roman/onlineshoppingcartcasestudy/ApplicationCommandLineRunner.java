@@ -42,14 +42,14 @@ public class ApplicationCommandLineRunner implements CommandLineRunner {
         categoryService.saveOrUpdate(new Category("tight Compression"));
 
 
-        productService.saveOrUpdate(new Product("sleeve", "sleeve footless compression", 14.99, "image"));
-        productService.saveOrUpdate(new Product("foot", "socks compression", 14.99, "image"));
-        productService.saveOrUpdate(new Product("hand", "fingerless compression", 14.99, "image"));
-        productService.saveOrUpdate(new Product("hip", "sleeve footless compression", 14.99, "image"));
-        productService.saveOrUpdate(new Product("finger", "compression for hand", 14.99, "image"));
-        productService.saveOrUpdate(new Product("thick sleeve", "sleeve footless compression", 14.99, "image"));
-        productService.saveOrUpdate(new Product("thin sleeve", "sleeve footless compression", 14.99, "image"));
-        productService.saveOrUpdate(new Product("tight ", "sleeve footless compression", 14.99, "image"));
+//        productService.saveOrUpdate(new Product("sleeve", "sleeve footless compression", 14.99, "image"));
+//        productService.saveOrUpdate(new Product("foot", "socks compression", 14.99, "image"));
+//        productService.saveOrUpdate(new Product("hand", "fingerless compression", 14.99, "image"));
+//        productService.saveOrUpdate(new Product("hip", "sleeve footless compression", 14.99, "image"));
+//        productService.saveOrUpdate(new Product("finger", "compression for hand", 14.99, "image"));
+//        productService.saveOrUpdate(new Product("thick sleeve", "sleeve footless compression", 14.99, "image"));
+//        productService.saveOrUpdate(new Product("thin sleeve", "sleeve footless compression", 14.99, "image"));
+//        productService.saveOrUpdate(new Product("tight ", "sleeve footless compression", 14.99, "image"));
 
 
 
