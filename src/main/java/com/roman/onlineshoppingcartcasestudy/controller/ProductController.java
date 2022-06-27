@@ -36,7 +36,7 @@ public class ProductController {
 
 //    @Value("${app.upload.dir:...}")
     //public String uplaodDir = "~/IdeaProjects/onlineShoppingCartStudy/files";
-    public String uplaodDir = "C:/Users/rttgg/IdeaProjects/onlineShoppingCartCaseStudy/files";
+    public String uplaodDir = System.getProperty("user.dir") + "/files";
 
     ProductService productService;
     CategoryService categoryService;

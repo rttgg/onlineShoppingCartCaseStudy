@@ -71,7 +71,11 @@
             <th scope="row" th:text="${iStat.index + 1}">1</th>
             <td th:text="${product.name}">Mark</td>
             <td th:text="${product.category.name}">Mark</td>
-            <td><img src="" height="100px" width="100px" th:src="@{${'/files/' + product.image}}"></td>
+<!--            <td><img src="#" id="imgPreview" height="100px" width="100px" th:src="@{${'/files/' + 'product.image'}}" style="margin-top: 20px" alt=" "></td>-->
+
+<!--            <td><img src="#" id="imgPreview" height="100px" width="100px" th:src="@{${'/files/' + 'Seattle.png'}}" style="margin-top: 20px" alt=" "></td>-->
+            <td><img src="C:\Users\rttgg\IdeaProjects\onlineShoppingCartCaseStudy\files\aboutus.png" id="imgPreview" height="100px" width="100px"  style="margin-top: 20px" alt=" "></td>
+<!--            <td> <img th:src="@{${product.image}}" id="imgPreview" height="100px" width="100px"  style="margin-top: 20px" alt=" "></td>-->
 
             <td><a href="" th:href="@{/products/update/{id}(id=${product.id})}" class="btn btn-warning">Update</a></td>
             <td><a href="" th:href="@{/products/delete/{id}(id=${product.id})}" class="btn btn-danger">Delete</a></td>
@@ -79,5 +83,6 @@
         </tbody>
     </table>
 </div>
+<script src="/js/fileRead.js"></script>
 </body>
 </html>
