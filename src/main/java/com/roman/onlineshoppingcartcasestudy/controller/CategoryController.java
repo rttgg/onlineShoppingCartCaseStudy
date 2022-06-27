@@ -33,7 +33,7 @@ public class CategoryController {
 
     @GetMapping("/categories")
     public String getAllCategories(Model model) {
-        model.addAttribute("categories", categoryService.findAll());
+        model.addAttribute("categories", categoryService.findAllCategory());
         return "categories";
     }
 

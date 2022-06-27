@@ -1,6 +1,5 @@
 package com.roman.onlineshoppingcartcasestudy.services;
 
-import com.roman.onlineshoppingcartcasestudy.model.Category;
 import com.roman.onlineshoppingcartcasestudy.model.Product;
 import com.roman.onlineshoppingcartcasestudy.repository.ProductRepo;
 import lombok.AccessLevel;
@@ -11,6 +10,8 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
+import java.util.Optional;
 
 @Slf4j
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
@@ -28,4 +29,21 @@ public class ProductService {
         log.info(p.toString());
         productRepo.save(p);
     }
+
+    public void addProduct(Product product) {
+        productRepo.save(product);
+    }
+
+    public List<Product> findAllProduct() {
+        return productRepo.findAll();
+    }
+
+    public Optional<Product> findProductById(long id) {
+        return productRepo.findById(id);
+    }
+    public void deleteProductById(long id) {
+        productRepo.deleteById(id);
+    }
+
+
 }
