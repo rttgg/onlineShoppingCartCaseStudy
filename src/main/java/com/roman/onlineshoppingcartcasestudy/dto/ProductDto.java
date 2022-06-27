@@ -17,6 +17,6 @@ public class ProductDto {
     String name;
     String description;
     double price;
-    //String imageName;
+    String imageName;
     int categoryId;
 }
