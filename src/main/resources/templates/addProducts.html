@@ -77,12 +77,24 @@
                     <label for="description">Product Description</label>
                     <textarea class="form-control" rows="5" th:field="*{description}" name="description" id="description"></textarea>
                 </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
 
+            <div class="col-sm-5">
+                <p>Product Image</p>
+                <div class="custom-file">
+                    <input type="file"  class="custom-file-input" name="file" accept="image/jpeg, image/png"  id="file"/>
+                    <label class="custom-file-label" for="file">Choose file</label>
+                </div>
+                <div class="form-group">
+                    <img src="/files/" id="imgPreview" height="100px" width="100px" th:src="@{${'/files/' + productDto.imageName}}" style="margin-top: 20px" alt=" ">
+                </div>
+                <input type="hidden" name="imgName" th:value="${productDto.imageName}">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
 
         </div>
     </div>
     </form>
 </div>
+
 </body>
 </html>
