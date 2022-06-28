@@ -54,6 +54,7 @@
     <a th:href="@{/products/add}" style="..." class="btn btn-primary">
         Add Product</a>
     </a>
+    <form action="/products" method="POST" enctype="multipart/form-data" >
     <table class="table table-dark">
         <thead>
         <tr>
@@ -72,9 +73,9 @@
             <td th:text="${product.name}">Mark</td>
             <td th:text="${product.category.name}">Mark</td>
 <!--            <td><img src="#" id="imgPreview" height="100px" width="100px" th:src="@{${'/files/' + 'product.image'}}" style="margin-top: 20px" alt=" "></td>-->
-
+            <th scope="row"><img alt="" th:src="*{'data:image/png;base64,'+{product.image}}" height="100px" width="100px"></th>
 <!--            <td><img src="#" id="imgPreview" height="100px" width="100px" th:src="@{${'/files/' + 'Seattle.png'}}" style="margin-top: 20px" alt=" "></td>-->
-            <td><img src="C:\Users\rttgg\IdeaProjects\onlineShoppingCartCaseStudy\files\aboutus.png" id="imgPreview" height="100px" width="100px"  style="margin-top: 20px" alt=" "></td>
+<!--            <td><img src="C:\Users\rttgg\IdeaProjects\onlineShoppingCartCaseStudy\files\aboutus.png" id="imgPreview" height="100px" width="100px"  style="margin-top: 20px" alt=" "></td>-->
 <!--            <td> <img th:src="@{${product.image}}" id="imgPreview" height="100px" width="100px"  style="margin-top: 20px" alt=" "></td>-->
 
             <td><a href="" th:href="@{/products/update/{id}(id=${product.id})}" class="btn btn-warning">Update</a></td>
@@ -82,7 +83,8 @@
         </tr>
         </tbody>
     </table>
+    </form>
 </div>
-<script src="/js/fileRead.js"></script>
+<!--<script src="/js/fileRead.js"></script>-->
 </body>
 </html>
