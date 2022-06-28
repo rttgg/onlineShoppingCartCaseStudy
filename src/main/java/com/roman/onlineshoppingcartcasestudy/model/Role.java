@@ -1,9 +1,9 @@
 package com.roman.onlineshoppingcartcasestudy.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import lombok.NonNull;
+
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Role {
@@ -11,17 +11,25 @@ public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
-    private String firstName;
-    private String lastName;
-    private String position;
+
+    @NonNull
+    private String adminEmail;
+
+    @ManyToMany(mappedBy = "roles")
+    private List<UserAccount> userAccounts;
 
     public Role() {
     }
 
-    public Role(String firstName, String lastName, String position) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.position = position;
+    public Role(int id, @NonNull String adminEmail, List<UserAccount> userAccounts) {
+        this.id = id;
+        this.adminEmail = adminEmail;
+        this.userAccounts = userAccounts;
+    }
+
+    public Role(@NonNull String adminEmail, List<UserAccount> userAccounts) {
+        this.adminEmail = adminEmail;
+        this.userAccounts = userAccounts;
     }
 
     public int getId() {
@@ -32,37 +40,28 @@ public class Role {
         this.id = id;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getAdminEmail() {
+        return adminEmail;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setAdminEmail(String adminEmail) {
+        this.adminEmail = adminEmail;
     }
 
-    public String getLastName() {
-        return lastName;
+    public List<UserAccount> getUserAccounts() {
+        return userAccounts;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getPosition() {
-        return position;
-    }
-
-    public void setPosition(String position) {
-        this.position = position;
+    public void setUserAccounts(List<UserAccount> userAccounts) {
+        this.userAccounts = userAccounts;
     }
 
     @Override
     public String toString() {
         return "Role{" +
                 "id=" + id +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", position='" + position + '\'' +
+                ", adminEmail='" + adminEmail + '\'' +
+                ", userAccounts=" + userAccounts +
                 '}';
     }
 }
