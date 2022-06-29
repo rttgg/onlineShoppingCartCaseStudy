@@ -3,6 +3,7 @@ package com.roman.onlineshoppingcartcasestudy.model;
 import lombok.NonNull;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.util.List;
 
 @Entity
@@ -10,10 +11,17 @@ public class Role {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private Integer id;
 
     @NonNull
-    private String adminEmail;
+    @Column(unique = true)
+    private String name;
+
+    public Role(int id, String name, List<UserAccount> userAccounts) {
+        this.id = id;
+        this.name = name;
+        this.userAccounts = userAccounts;
+    }
 
     @ManyToMany(mappedBy = "roles")
     private List<UserAccount> userAccounts;
@@ -21,15 +29,17 @@ public class Role {
     public Role() {
     }
 
-    public Role(int id, @NonNull String adminEmail, List<UserAccount> userAccounts) {
-        this.id = id;
-        this.adminEmail = adminEmail;
+    public Role(String name, List<UserAccount> userAccounts) {
+        this.name = name;
         this.userAccounts = userAccounts;
     }
 
-    public Role(@NonNull String adminEmail, List<UserAccount> userAccounts) {
-        this.adminEmail = adminEmail;
-        this.userAccounts = userAccounts;
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public int getId() {
@@ -40,13 +50,6 @@ public class Role {
         this.id = id;
     }
 
-    public String getAdminEmail() {
-        return adminEmail;
-    }
-
-    public void setAdminEmail(String adminEmail) {
-        this.adminEmail = adminEmail;
-    }
 
     public List<UserAccount> getUserAccounts() {
         return userAccounts;
@@ -60,8 +63,9 @@ public class Role {
     public String toString() {
         return "Role{" +
                 "id=" + id +
-                ", adminEmail='" + adminEmail + '\'' +
+                ", name='" + name + '\'' +
                 ", userAccounts=" + userAccounts +
                 '}';
     }
+
 }

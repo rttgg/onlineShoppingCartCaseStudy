@@ -21,11 +21,12 @@ public class UserAccount {
     @NonNull
     private String userLastName;
 
-    @NonNull
+
     private String password;
 
     @NonNull
     @Email(message = "{errors.invalid_email}")
+    @Column(unique = true)
     private String email;
 
 
