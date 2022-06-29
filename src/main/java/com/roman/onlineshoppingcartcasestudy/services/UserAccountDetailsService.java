@@ -16,18 +16,20 @@ import java.util.Optional;
 @Slf4j
 public class UserAccountDetailsService implements UserDetailsService {
 
-
+    @Autowired
     UserAccountRepo userAccountRepo;
 
-    @Autowired
-    public UserAccountDetailsService(UserAccountRepo userAccountRepo) {
-        this.userAccountRepo = userAccountRepo;
-    }
+
+//    @Autowired
+//    public UserAccountDetailsService(UserAccountRepo userAccountRepo) {
+//        this.userAccountRepo = userAccountRepo;
+//    }
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Optional<UserAccount> userAccount = userAccountRepo.findByEmail(username);
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        Optional<UserAccount> userAccount = userAccountRepo.findByEmail(email);
         userAccount.orElseThrow(() -> new UsernameNotFoundException("user not Found"));
-        return new UserAccountDetail(userAccount);
+//        return new UserAccountDetail(userAccount);
+        return userAccount.map(UserAccountDetail::new).get();
     }
 }

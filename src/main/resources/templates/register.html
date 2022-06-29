@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>TRONS</title>
+    <link rel="stylesheet" href="/static/css/homestyle.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+<section id="nav-bar">
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#"><img src="/images/tronsLogo.png"></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fa fa-bars"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/}" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/categories}" href="#">Category</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/products}" href="#">Product</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link"th:href="@{/shop}"  href="#">Shop</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/cart}" href="#">Cart</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Sign Up</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</section>
+<div class="container">
+    <div class="col-sm-6">
+        <h3 style="margin-top: 10px">Sign Up Now</h3>
+        <p>Please fill out this to register</p>
+        <form th:action="@{/register}" th:object="${userAccount}" method="post">
+            <div class="form-group">
+                <label for="userFirstName">First Name</label>
+                <input type="text" name="userFirstName" id="userFirstName" required placeholder="Your Firstname" class="form-control form-control-lg">
+            </div>
+            <div class="form-group">
+                <label for="userLastName">Last Name</label>
+                <input type="text" name="userLastName" id="userLastName" required placeholder="Your Lastname" class="form-control form-control-lg">
+            </div>
+            <div class="form-group">
+                <label for="email">Email address</label>
+                <input type="email" class="form-control form-control-lg" required minlength="6" placeholder="Email" name="email" id="email"
+                       aria-describedby="emailHelp">
+                <small id="emailHelp" class="form-text text-muted">We'll never share your email with
+                    anyone else.</small>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" class="form-control form-control-lg" required placeholder="Password" name="password"
+                       id="password">
+            </div>
+
+            <input type="submit" value="Register" class="btn btn-primary btn-block">
+            <span style="margin-top: 10px">Already have an account <a class="linkControl" href="./login.html"
+                                                                      th:href="@{/login}">Login here</a></span>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>
