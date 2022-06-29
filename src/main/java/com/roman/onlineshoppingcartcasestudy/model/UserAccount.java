@@ -21,7 +21,7 @@ public class UserAccount {
     @NonNull
     private String userLastName;
 
-
+    @NonNull
     private String password;
 
     @NonNull

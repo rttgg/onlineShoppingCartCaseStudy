@@ -45,5 +45,9 @@ public class ProductService {
         productRepo.deleteById(id);
     }
 
+    public Product findByImageName(String image) {
+       return productRepo.findByImage(image);
+    }
+
 
 }

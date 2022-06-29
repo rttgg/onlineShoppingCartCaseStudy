@@ -4,8 +4,8 @@ import com.roman.onlineshoppingcartcasestudy.model.Role;
 import com.roman.onlineshoppingcartcasestudy.model.UserAccount;
 import com.roman.onlineshoppingcartcasestudy.repository.RoleRepo;
 import com.roman.onlineshoppingcartcasestudy.repository.UserAccountRepo;
+import com.roman.onlineshoppingcartcasestudy.security.AppUserAccountDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,6 +23,9 @@ public class UserAccountLoginController {
     UserAccountRepo userAccountRepo;
     @Autowired
     RoleRepo roleRepo;
+
+    @Autowired
+    AppUserAccountDetailsService service;
 
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;

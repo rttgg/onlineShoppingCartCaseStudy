@@ -3,11 +3,11 @@ package com.roman.onlineshoppingcartcasestudy.model;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "cart_item")
+@Table(name = "cart_items")
 public class CartItem {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer Id;
 
     @ManyToOne
@@ -15,7 +15,7 @@ public class CartItem {
     private Product product;
 
     @ManyToOne
-    @JoinColumn(name = "userName")
+    @JoinColumn(name = "userAccountId", referencedColumnName = "ID")
     private UserAccount userAccount;
     private int quantity;
 
@@ -56,11 +56,11 @@ public class CartItem {
         this.product = product;
     }
 
-    public UserAccount getAccount() {
+    public UserAccount getUserAccount() {
         return userAccount;
     }
 
-    public void setAccount(UserAccount userAccount) {
+    public void setUserAccount(UserAccount userAccount) {
         this.userAccount = userAccount;
     }
 

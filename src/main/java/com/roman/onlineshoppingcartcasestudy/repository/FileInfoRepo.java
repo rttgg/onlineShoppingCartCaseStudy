@@ -6,4 +6,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface FileInfoRepo extends JpaRepository<FileInfo, Integer> {
+
+    FileInfo findByFileName(String name);
 }

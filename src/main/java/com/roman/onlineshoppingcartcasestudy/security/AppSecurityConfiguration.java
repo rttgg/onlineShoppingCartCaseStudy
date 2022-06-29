@@ -1,26 +1,24 @@
-package com.roman.onlineshoppingcartcasestudy.configuration;
+package com.roman.onlineshoppingcartcasestudy.security;
 
-import com.roman.onlineshoppingcartcasestudy.services.UserAccountDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
-public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
+public class AppSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 
     @Autowired
-    UserAccountDetailsService userAccountDetailsService;
+    AppUserAccountDetailsService appUserAccountDetailsService;
 
 
 //    public SecurityConfiguration(UserAccountDetailsService userAccountDetailsService) {
@@ -32,9 +30,17 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder(4);
     }
 
+    @Bean
+    public DaoAuthenticationProvider authenticationProvider(){
+        DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
+        provider.setPasswordEncoder(passwordEncoder());
+        provider.setUserDetailsService(appUserAccountDetailsService);
+        return provider;
+    }
+
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userAccountDetailsService);
+        auth.authenticationProvider(authenticationProvider());
     }
 
     @Override
@@ -50,7 +56,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 //                .and()
 //                .csrf().disable()
 //                .authorizeRequests()
-//                .antMatchers("/", "/register", "/shop/**").permitAll()
+//                .antMatchers("/", "/register", "/cart/**").permitAll()
 //                .antMatchers("/category/**", "/products/**").hasRole("ADMIN")
 //                .anyRequest()
 //                .authenticated()
@@ -79,10 +85,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .usernameParameter("email")
                 .passwordParameter("password")
                 .and()
-//                .oauth2Login()
-//                .loginPage("/login")
-//                .successHandler(googleOAuth2SuccessHandler)
-//                .and()
                 .logout()
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                 .logoutSuccessUrl("/login")

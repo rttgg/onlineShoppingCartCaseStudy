@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.Optional;
 
 
@@ -27,7 +28,9 @@ public class CategoryController {
 
 
     @GetMapping("/")
-    public String adminHome() {
+    public String adminHome(Principal principal) {
+        if(principal != null)
+        log.info("current user: {}", principal.getName());
         return "home";
     }
 

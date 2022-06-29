@@ -1,6 +1,5 @@
-package com.roman.onlineshoppingcartcasestudy.services;
+package com.roman.onlineshoppingcartcasestudy.security;
 
-import com.roman.onlineshoppingcartcasestudy.dto.UserAccountDetail;
 import com.roman.onlineshoppingcartcasestudy.model.UserAccount;
 import com.roman.onlineshoppingcartcasestudy.repository.UserAccountRepo;
 import lombok.extern.slf4j.Slf4j;
@@ -14,22 +13,20 @@ import java.util.Optional;
 
 @Service
 @Slf4j
-public class UserAccountDetailsService implements UserDetailsService {
+public class AppUserAccountDetailsService implements UserDetailsService {
 
-    @Autowired
     UserAccountRepo userAccountRepo;
 
-
-//    @Autowired
-//    public UserAccountDetailsService(UserAccountRepo userAccountRepo) {
-//        this.userAccountRepo = userAccountRepo;
-//    }
+    @Autowired
+    public AppUserAccountDetailsService(UserAccountRepo userAccountRepo) {
+        this.userAccountRepo = userAccountRepo;
+    }
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         Optional<UserAccount> userAccount = userAccountRepo.findByEmail(email);
         userAccount.orElseThrow(() -> new UsernameNotFoundException("user not Found"));
 //        return new UserAccountDetail(userAccount);
-        return userAccount.map(UserAccountDetail::new).get();
+       return new AppUserAccountDetail(userAccount.get());
     }
 }
