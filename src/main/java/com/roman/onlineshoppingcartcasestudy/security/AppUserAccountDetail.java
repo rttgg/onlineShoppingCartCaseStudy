@@ -1,4 +1,4 @@
-package com.roman.onlineshoppingcartcasestudy.dto;
+package com.roman.onlineshoppingcartcasestudy.security;
 
 import com.roman.onlineshoppingcartcasestudy.model.UserAccount;
 import org.springframework.security.core.GrantedAuthority;
@@ -8,34 +8,35 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import java.util.Optional;
 
-public class UserAccountDetail extends UserAccount implements UserDetails {
+public class AppUserAccountDetail implements UserDetails {
 //    public UserAccountDetail(Optional<UserAccount> userAccount) {
 //
 //    }
-    public UserAccountDetail(UserAccount userAccount) {
-        super(userAccount);
+
+    public AppUserAccountDetail(UserAccount userAccount) {
+        this.userAccount = userAccount;
     }
+
+    UserAccount userAccount;
+
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         List<GrantedAuthority> authGroupList = new ArrayList<>();
-        super.getRoles().forEach(role -> {
-            authGroupList.add(new SimpleGrantedAuthority(role.getName()));
-        });
+        userAccount.getRoles().stream().map(role -> authGroupList.add(new SimpleGrantedAuthority(role.getName())));
 
         return authGroupList;
     }
 
     @Override
     public String getUsername() {
-        return super.getEmail();
+        return userAccount.getEmail();
     }
 
     @Override
     public String getPassword() {
-        return getPassword();
+        return userAccount.getPassword();
     }
 
     @Override
