@@ -45,8 +45,16 @@ public class ProductService {
         productRepo.deleteById(id);
     }
 
+    public Optional<Product> getProductById(long id) {
+        return productRepo.findById(id);
+    }
+
     public Product findByImageName(String image) {
        return productRepo.findByImage(image);
+    }
+
+    public List<Product> getAllProductsByCategoryId(int id) {
+        return productRepo.findAllProductByCategoryId(id);
     }
 
 

@@ -23,24 +23,10 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link" th:href="@{/}" href="#">Home</a>
+                        <a class="nav-link" th:href="@{/admin}" href="#">Admin Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" th:href="@{/categories}" href="#">Category</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" th:href="@{/products}" href="#">Product</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Shop</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Cart</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">logout</a>
+                        <a class="nav-link" th:href="@{/logout}" href="#">Log Out</a>
                     </li>
                 </ul>
             </div>
@@ -48,10 +34,8 @@
     </nav>
 </section>
 
-
-<!--<h1 th:text="${categories}"/>-->
 <div class="container">
-    <a th:href="@{/products/add}" style="..." class="btn btn-primary">
+    <a th:href="@{/admin/products/add}" style="..." class="btn btn-primary">
         Add Product</a>
     </a>
     <form action="/products" method="POST" enctype="multipart/form-data" >
@@ -78,13 +62,13 @@
 <!--            <td><img src="C:\Users\rttgg\IdeaProjects\onlineShoppingCartCaseStudy\files\aboutus.png" id="imgPreview" height="100px" width="100px"  style="margin-top: 20px" alt=" "></td>-->
 <!--            <td> <img th:src="@{${product.image}}" id="imgPreview" height="100px" width="100px"  style="margin-top: 20px" alt=" "></td>-->
 
-            <td><a href="" th:href="@{/products/update/{id}(id=${product.id})}" class="btn btn-warning">Update</a></td>
-            <td><a href="" th:href="@{/products/delete/{id}(id=${product.id})}" class="btn btn-danger">Delete</a></td>
+            <td><a href="" th:href="@{/admin/products/update/{id}(id=${product.id})}" class="btn btn-warning">Update</a></td>
+            <td><a href="" th:href="@{/admin/products/delete/{id}(id=${product.id})}" class="btn btn-danger">Delete</a></td>
         </tr>
         </tbody>
     </table>
     </form>
 </div>
-<!--<script src="/js/fileRead.js"></script>-->
+
 </body>
 </html>

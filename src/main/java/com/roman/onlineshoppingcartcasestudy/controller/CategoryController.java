@@ -2,8 +2,6 @@ package com.roman.onlineshoppingcartcasestudy.controller;
 
 import com.roman.onlineshoppingcartcasestudy.model.Category;
 import com.roman.onlineshoppingcartcasestudy.services.CategoryService;
-import lombok.AccessLevel;
-import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,8 +14,6 @@ import java.util.Optional;
 
 @Slf4j
 @Controller
-@FieldDefaults(makeFinal = true, level = AccessLevel.PRIVATE)
-//@RequestMapping("categories")
 public class CategoryController {
 
     CategoryService categoryService;
@@ -27,32 +23,37 @@ public class CategoryController {
     }
 
 
-    @GetMapping("/")
+    @GetMapping("/admin")
     public String adminHome(Principal principal) {
         if(principal != null)
-        log.info("current user: {}", principal.getName());
-        return "home";
+            log.info("current user: {}", principal.getName());
+        return "adminHome";
     }
 
-    @GetMapping("/categories")
+//    @GetMapping("/admin")
+//    public String adminHome() {
+//        return "adminHome";
+//    }
+
+    @GetMapping("/admin/categories")
     public String getAllCategories(Model model) {
         model.addAttribute("categories", categoryService.findAllCategory());
         return "categories";
     }
 
-    @GetMapping("/categories/add")
+    @GetMapping("/admin/categories/add")
     public String addCategory(Model model) {
         model.addAttribute("category", new Category());
         return "addCategory";
     }
 
-    @PostMapping("/categories/add")
+    @PostMapping("/admin/categories/add")
     public String postCategory(@ModelAttribute("category") Category category) {
         categoryService.addCategory(category);
-        return "redirect:/categories";
+        return "redirect:/admin/categories";
     }
 
-    @GetMapping("/categories/update/{id}")
+    @GetMapping("/admin/categories/update/{id}")
     public String updateCategory(@PathVariable int id, Model model) {
         Optional<Category> category = categoryService.findCategoryById(id);
         if(category.isPresent()) {
@@ -62,10 +63,10 @@ public class CategoryController {
             return "category is not available";
     }
 
-    @GetMapping("/categories/delete/{id}")
+    @GetMapping("/admin/categories/delete/{id}")
     public String deleteCategory(@PathVariable int id) {
         categoryService.deleteCategoryById(id);
-        return "redirect:/categories";
+        return "redirect:/admin/categories";
     }
 
 }

@@ -51,29 +51,10 @@ public class AppSecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-//                .sessionManagement()
-//                .sessionCreationPolicy(SessionCreationPolicy.ALWAYS)
-//                .and()
-//                .csrf().disable()
-//                .authorizeRequests()
-//                .antMatchers("/", "/register", "/cart/**").permitAll()
-//                .antMatchers("/category/**", "/products/**").hasRole("ADMIN")
-//                .anyRequest()
-//                .authenticated()
-//                .and()
-//                .formLogin().loginPage("/login").usernameParameter("email").passwordParameter("password")
-//                .loginProcessingUrl("/login/processing").defaultSuccessUrl("/")
-//                .failureUrl("/login?error=true").permitAll()
-//                .and()
-//                .logout()
-//                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-//                .logoutSuccessUrl("/login")
-//                .invalidateHttpSession(true)
-//                .deleteCookies("JSESSIONID");
 
                 .authorizeRequests()
                 .antMatchers("/", "/shop/**", "/register", "/h2-console/**").permitAll()
-                .antMatchers("/admin/**").hasRole("ADMIN")
+                .antMatchers("/category/**", "/products/**").hasRole("ADMIN")
                 .anyRequest()
                 .authenticated()
                 .and()
