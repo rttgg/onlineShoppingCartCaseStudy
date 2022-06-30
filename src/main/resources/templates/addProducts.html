@@ -23,34 +23,19 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link" th:href="@{/}" href="#">Home</a>
+                        <a class="nav-link" th:href="@{/admin}" href="#">Admin Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" th:href="@{/categories}" href="#">Category</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Shop</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" th:href="@{/products}" href="#">Product</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Cart</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">logout</a>
-                    </li>
+                        <a class="nav-link" th:href="@{/logout}" href="#">Log Out</a>
                 </ul>
             </div>
         </div>
     </nav>
 </section>
 
-
-
 <div class="container">
     <h3>Add a new Product</h3>
-    <form th:action="@{/products/add}" method="post" th:object="${productDto}" enctype="multipart/form-data">
+    <form th:action="@{/admin/products/add}" method="post" th:object="${productDto}" enctype="multipart/form-data">
     <div class="row">
         <div class="col-sm-4">
 
@@ -90,7 +75,6 @@
                 <input type="hidden" name="imgName" th:value="${productDto.imageName}">
                 <button type="submit" class="btn btn-primary">Submit</button>
             </div>
-
         </div>
     </div>
     </form>

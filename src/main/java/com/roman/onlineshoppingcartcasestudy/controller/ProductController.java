@@ -53,20 +53,20 @@ public class ProductController {
         this.fileInfoService = fileInfoService;
     }
 
-    @GetMapping("/products")
+    @GetMapping("/admin/products")
     public String getAllProducts(Model model) {
         model.addAttribute("products", productService.findAllProduct());
         return "products";
     }
 
-    @GetMapping("/products/add")
+    @GetMapping("/admin/products/add")
     public String addProduct(Model model) {
         model.addAttribute("productDto", new ProductDto());
         model.addAttribute("categories", categoryService.findAllCategory());
         return "addProducts";
     }
 
-    @PostMapping("/products/add")
+    @PostMapping("/admin/products/add")
     public String postProducts(@ModelAttribute("productDto") ProductDto productDto,
                                @RequestParam("file") MultipartFile file, RedirectAttributes redirectAttributes,
                               @RequestParam("imgName")String imgName)
@@ -100,17 +100,17 @@ public class ProductController {
         }
         redirectAttributes.addFlashAttribute("message", "successfully uploaded " + fileName + '!');
         productService.addProduct(product);
-        return "redirect:/products";
+        return "redirect:/admin/products";
 
     }
 
-    @GetMapping("/products/delete/{id}")
+    @GetMapping("/admin/products/delete/{id}")
     public String deleteProduct(@PathVariable long id){
         productService.deleteProductById(id);
-        return "redirect:/products";
+        return "redirect:/admin/products";
     }
 
-    @GetMapping("/products/update/{id}")
+    @GetMapping("/admin/products/update/{id}")
     public String updateProduct(@PathVariable long id, Model model) {
         Product product = productService.findProductById(id).get();
         ProductDto productDto = new ProductDto();
@@ -134,8 +134,5 @@ public class ProductController {
         response.getOutputStream().write(fileInfo.getData());
         response.getOutputStream().close();
     }
-
-
-
 
 }
