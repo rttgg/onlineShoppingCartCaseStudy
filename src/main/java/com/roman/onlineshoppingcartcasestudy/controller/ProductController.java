@@ -82,7 +82,7 @@ public class ProductController {
         product.setImage(fileName);
         if(file.isEmpty()) {
             redirectAttributes.addFlashAttribute("message", "select an image");
-            return "redirect:/products";
+            return "redirect:/admin/products";
         }
 //        String fileName = StringUtils.cleanPath(Objects.requireNonNull(file.getOriginalFilename()));
 
