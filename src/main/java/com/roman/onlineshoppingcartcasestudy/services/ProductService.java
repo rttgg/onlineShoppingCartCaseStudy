@@ -53,7 +53,7 @@ public class ProductService {
        return productRepo.findByImage(image);
     }
 
-    public List<Product> getAllProductsByCategoryId(int id) {
+    public List<Product> findAllProductsByCategoryId(int id) {
         return productRepo.findAllProductByCategoryId(id);
     }
 
