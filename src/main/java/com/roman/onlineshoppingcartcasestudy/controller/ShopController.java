@@ -1,5 +1,6 @@
 package com.roman.onlineshoppingcartcasestudy.controller;
 
+import com.roman.onlineshoppingcartcasestudy.services.CartService;
 import com.roman.onlineshoppingcartcasestudy.services.CategoryService;
 import com.roman.onlineshoppingcartcasestudy.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,7 @@ public class ShopController {
 
     @GetMapping({"/", "/home"})
     public String home(Model model) {
+        model.addAttribute("cartCount", CartService.shoppingCart.size());
         return "home";
     }
 
@@ -25,6 +27,7 @@ public class ShopController {
     public String shop(Model model) {
         model.addAttribute("categories", categoryService.findAllCategory());
         model.addAttribute("products", productService.findAllProduct());
+        model.addAttribute("cartCount", CartService.shoppingCart.size());
         return "shop";
     }
 
@@ -32,6 +35,7 @@ public class ShopController {
     public String shopByCategory(Model model, @PathVariable int id) {
         model.addAttribute("categories", categoryService.findAllCategory());
         model.addAttribute("products", productService.findAllProductsByCategoryId(id));
+        model.addAttribute("cartCount", CartService.shoppingCart.size());
         return "shop";
     }
 }

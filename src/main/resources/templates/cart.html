@@ -1,5 +1,5 @@
-<!doctype html>
-<html lang="en" xmlns:th="http://thymeleaf.org">
+<html lang="en" xmlns:th="http://thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -25,17 +25,23 @@
                         <a class="nav-link" th:href="@{/}" href="#">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" th:href="@{/categories}" href="#">Category</a>
+                        <a class="nav-link" th:href="@{/shop/categories}" href="#">Category</a>
                     </li>
 
                     <li class="nav-item">
                         <a class="nav-link" th:href="@{/products}" href="#">Product</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Shop</a>
+                        <a class="nav-link" th:href="@{/shop}" href="#">Shop</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" sec:authorize="isAnonymous()" th:href="@{/login}" href="#">login</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" sec:authorize="isAuthenticated()" th:href="@{/logout}" href="#">logout</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Cart</a>
+                        <a class="nav-link" th:href="@{/cart}" href="#">Cart</a>
                     </li>
                 </ul>
             </div>
