@@ -45,4 +45,9 @@ public class ShopController {
         model.addAttribute("cartCount", CartService.shoppingCart.size());
         return "viewproducts";
     }
+
+    @GetMapping("/home/aboutus")
+    public String about() {
+        return "aboutus";
+    }
 }
