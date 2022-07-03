@@ -1,3 +1,11 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
 <html lang="en" xmlns:th="http://thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
@@ -51,9 +59,7 @@
         </div>
     </nav>
 </section>
-<div>
-    <h2>Your Shopping Cart</h2>
-</div>
+
 <div class="container">
 
     <!--Section: Block Content-->
@@ -63,54 +69,90 @@
         <div class="row">
 
             <!--Grid column-->
-            <div class="col-lg-8">
+            <div class="col-lg-8 mb-4">
 
                 <!-- Card -->
-                <div class="card wish-list mb-4">
+                <div class="card wish-list pb-1">
                     <div class="card-body">
 
-                        <h5 class="mb-4">Cart (<span th:text="${cartCount}">2</span> items)</h5>
+                        <h5 class="mb-2">Billing details</h5>
 
-                        <div class="row mb-4" th:each="item, iStat : ${cart}">
-<!--                            <div class="col-md-5 col-lg-3 col-xl-3">-->
-<!--                                <div class="mb-3 mb-md-0">-->
-<!--                                    <img src="#" id="imgPreview" height="150px" width="150px" th:src="@{'/image?name=' + ${product.image}}" th:alt="${product.name}">-->
-<!--                                         src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/12a.jpg" alt="Sample">-->
+                        <!-- Grid row -->
+                        <div class="row">
 
-<!--                                </div>-->
-<!--                            </div>-->
-                            <div class="col-md-7 col-lg-9 col-xl-9">
-                                <div>
-                                    <div class="d-flex justify-content-between">
-                                        <div>
-                                            <h5 th:text="${item.name}">Blue denim shirt</h5>
+                            <!-- Grid column -->
+                            <div class="col-lg-6">
 
-                                            <!--                                                <p class="mb-2 text-uppercase small">Category: <span th:text="${item.category.name}"></span></p>-->
-
-                                        </div>
-
-                                    </div>
-                                    <div class="mt-5 d-flex justify-content-between align-items-center">
-                                        <div>
-                                            <a href="#!" th:href="@{/cart/deleteItem/{index}(index=${iStat.index})}"  type="button" class="card-link-secondary small text-uppercase mr-3"><i
-                                                    class="fas fa-trash-alt mr-1"></i> Delete item </a>
-
-                                        </div>
-                                        <p class="mb-0"><span><strong>$<span th:text="${item.price}"></span></strong></span></p>
-                                    </div>
+                                <!-- First name -->
+                                <div class="md-form md-outline mb-0 mb-lg-4">
+                                    <label for="firstName">First name</label>
+                                    <input type="text" id="firstName" required class="form-control mb-0 mb-lg-2">
                                 </div>
+
                             </div>
+                            <!-- Grid column -->
+
+                            <!-- Grid column -->
+                            <div class="col-lg-6">
+
+                                <!-- Last name -->
+                                <div class="md-form md-outline">
+                                    <label for="lastName">Last name</label>
+                                    <input type="text" id="lastName" required class="form-control">
+                                </div>
+
+                            </div>
+                            <!-- Grid column -->
+
                         </div>
-                        <hr class="mb-4">
+                        <!-- Grid row -->
 
-<!--                        <p class="text-primary mb-0"><i class="fas fa-info-circle mr-1"></i> Do not delay the purchase, adding-->
-<!--                            items to your cart does not mean booking them.</p>-->
+                        <!-- Address Part 1 -->
+                        <div class="md-form md-outline mt-2">
+                            <label for="form14">Address (Line 1)</label>
+                            <input type="text" required id="form14" placeholder="House number and street name" class="form-control">
+                        </div>
 
-                    </div>
+                        <!-- Address Part 2 -->
+                        <div class="md-form md-outline mt-2">
+                            <label for="form15">Address (Line 2)</label>
+                            <input type="text" id="form15" placeholder="Apartment, suite, unit etc. (optional)"
+                                   class="form-control">
+                        </div>
+
+                        <!-- Postcode / ZIP -->
+                        <div class="md-form md-outline mt-3">
+                            <label for="form16">Postcode / ZIP</label>
+                            <input type="text" maxlength="6" minlength="6" required id="form16" class="form-control">
+                        </div>
+
+                        <!-- Town / City -->
+                        <div class="md-form md-outline mt-2">
+                            <label for="form17">City</label>
+                            <input type="text" required id="form17" class="form-control">
+
+                        </div>
+
+                        <!-- Phone -->
+                        <div class="md-form md-outline mt-2">
+                            <label for="form18">Phone</label>
+                            <input type="number" minlength="10" maxlength="10" required id="form18" class="form-control">
+                        </div>
+
+                        <!-- Email address -->
+                        <div class="md-form md-outline mt-2">
+                            <label for="form19">Email address</label>
+                            <input type="email" required id="form19" class="form-control">
+                        </div>
+
+                        <!-- Additional information -->
+                        <div class="md-form md-outline mt-2">
+                            <label for="form76">Additional information</label>
+                            <textarea id="form76" class="md-textarea form-control" rows="4"></textarea>
+                        </div>
+               </div>
                 </div>
-
-
-
+                <!-- Card -->
 
             </div>
             <!--Grid column-->
@@ -137,23 +179,24 @@
                                 <div>
                                     <strong>The total amount of</strong>
                                     <strong>
-                                        <p class="mb-0">(including TAX)</p>
+                                        <p class="mb-0">(including Tax)</p>
                                     </strong>
                                 </div>
                                 <span><strong>$<span th:text="${total}"></span></strong></span>
                             </li>
                         </ul>
 
-                        <a th:href="@{/checkout}" h class="btn btn-primary btn-block waves-effect waves-light">go to
-                            checkout</a>
+                        <form action="" method="post" th:action="@{/paynow}" >
+                            <button type="submit"  class="btn btn-primary btn-block waves-effect waves-light">Pay Now</button>
+                        </form>
 
                     </div>
                 </div>
                 <!-- Card -->
 
                 <!-- Card -->
-                <div class="card mb-4">
-                    <div class="card-body">
+<!--                <div class="card mb-4">-->
+<!--                    <div class="card-body">-->
 
 <!--                        <a class="dark-grey-text d-flex justify-content-between" data-toggle="collapse" href="#collapseExample"-->
 <!--                           aria-expanded="false" aria-controls="collapseExample">-->
@@ -161,16 +204,16 @@
 <!--                            <span><i class="fas fa-chevron-down pt-1"></i></span>-->
 <!--                        </a>-->
 
-                        <div class="collapse" id="collapseExample">
-                            <div class="mt-3">
-                                <div class="md-form md-outline mb-0">
-                                    <input type="text" id="discount-code" class="form-control font-weight-light"
-                                           placeholder="Enter discount code">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+<!--                        <div class="collapse" id="collapseExample">-->
+<!--                            <div class="mt-3">-->
+<!--                                <div class="md-form md-outline mb-0">-->
+<!--                                    <input type="text" id="discount-code" class="form-control font-weight-light"-->
+<!--                                           placeholder="Enter discount code">-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
                 <!-- Card -->
 
             </div>
@@ -182,8 +225,7 @@
     </section>
     <!--Section: Block Content-->
 
+
 </div>
-
-
 </body>
 </html>

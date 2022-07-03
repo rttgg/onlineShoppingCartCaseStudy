@@ -46,7 +46,7 @@ public class AppSecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     public void configure(WebSecurity web) throws Exception {
         web.ignoring().antMatchers("/resources**", "/static/**", "/css/**", "/images/**", "js/**", "/home", "/about", "/png/**", "/icons/**",
-        "/layer/**");
+        "/layer/**", "/error", "/paynow");
     }
 
     @Override
@@ -54,7 +54,7 @@ public class AppSecurityConfiguration extends WebSecurityConfigurerAdapter {
         http
 
                 .authorizeRequests()
-                .antMatchers("/", "/shop/**", "/register", "/h2-console/**").permitAll()
+                .antMatchers("/", "/shop/**", "/register", "/h2-console/**","/cart/**").permitAll()
                 .antMatchers("/category/**", "/products/**").hasRole("ADMIN")
                 .anyRequest()
                 .authenticated()
