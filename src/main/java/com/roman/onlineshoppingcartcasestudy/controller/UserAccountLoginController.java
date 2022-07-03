@@ -45,7 +45,6 @@ public class UserAccountLoginController {
         String password = userAccount.getPassword();
         userAccount.setPassword(bCryptPasswordEncoder.encode(password));
         List<Role> roles = new ArrayList<>();
-        //if(roleRepo.findById(2).isPresent()){
         roles.add(roleRepo.findById(2).get());
         userAccount.setRoles(roles);
         userAccountRepo.save(userAccount);
