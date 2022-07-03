@@ -4610,11 +4610,11 @@ textarea.form-control-lg {
     width: 100px;
 }
 
-.card-img,
-.card-img-top {
-    border-top-left-radius: calc(0.25rem - 1px);
-    border-top-right-radius: calc(0.25rem - 1px);
-}
+/*.card-img,*/
+/*.card-img-top {*/
+/*    border-top-left-radius: calc(0.25rem - 1px);*/
+/*    border-top-right-radius: calc(0.25rem - 1px);*/
+/*}*/
 
 .card-img,
 .card-img-bottom {
