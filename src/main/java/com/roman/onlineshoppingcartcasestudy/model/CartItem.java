@@ -5,6 +5,7 @@ import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.persistence.*;
+import java.util.List;
 
 
 @Getter
@@ -45,5 +46,15 @@ public class CartItem {
         this.quantity = quantity;
         this.product = product;
         this.userAccount = userAccount;
+    }
+
+    @Override
+    public String toString() {
+        return "CartItem{" +
+                "id=" + id +
+                ", quantity=" + quantity +
+                ", product=" + product +
+                ", userAccount=" + userAccount +
+                '}';
     }
 }

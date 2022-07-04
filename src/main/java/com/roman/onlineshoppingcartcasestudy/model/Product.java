@@ -1,5 +1,7 @@
 package com.roman.onlineshoppingcartcasestudy.model;
 
+import lombok.NonNull;
+
 import javax.persistence.*;
 
 @Entity
@@ -7,10 +9,12 @@ import javax.persistence.*;
 public class Product {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "product_Id")
     private Long id;
 
+    @NonNull
+    @Column(unique = true)
     private String name;
     private String productDescription;
     private double price;
@@ -45,6 +49,10 @@ public class Product {
         this.productDescription = productDescription;
         this.price = price;
         this.image = image;
+    }
+
+    public Product(Long id) {
+        this.id = id;
     }
 
     public Long getId() {
