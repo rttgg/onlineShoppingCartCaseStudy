@@ -1,7 +1,8 @@
 package com.roman.onlineshoppingcartcasestudy;
 
 import com.roman.onlineshoppingcartcasestudy.model.Category;
-import com.roman.onlineshoppingcartcasestudy.model.Product;
+import com.roman.onlineshoppingcartcasestudy.model.UserAccount;
+import com.roman.onlineshoppingcartcasestudy.repository.UserAccountRepo;
 import com.roman.onlineshoppingcartcasestudy.services.CategoryService;
 import com.roman.onlineshoppingcartcasestudy.services.ProductService;
 import lombok.AccessLevel;
@@ -36,10 +37,10 @@ public class ApplicationCommandLineRunner implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        categoryService.saveOrUpdate(new Category("Calf Compression"));
-        categoryService.saveOrUpdate(new Category("Elbow Compression"));
-        categoryService.saveOrUpdate(new Category("Ankle Compression"));
-        categoryService.saveOrUpdate(new Category("tight Compression"));
+        categoryService.saveOrUpdate(new Category("TRONS Calf Compression Socks"));
+        categoryService.saveOrUpdate(new Category("TRONS Copper Compression Socks"));
+        categoryService.saveOrUpdate(new Category("TRONS Thigh Compression Sleeves"));
+        categoryService.saveOrUpdate(new Category("TRONS Arthritis Hand Compression"));
 
 
 //        productService.saveOrUpdate(new Product("sleeve", "sleeve footless compression", 14.99, "image"));
@@ -52,14 +53,6 @@ public class ApplicationCommandLineRunner implements CommandLineRunner {
 //        productService.saveOrUpdate(new Product("tight ", "sleeve footless compression", 14.99, "image"));
 
 
-
-
-
-
     }
-//        productService.saveOrUpdate(new Product("aaa", "bbb", 3.14, Date.from(Instant.now())));
-//        productService.saveOrUpdate(new Product("aaa", "bbb", 3.14, Date.from(Instant.now())));
-//        productService.saveOrUpdate(new Product("aaa", "bbb", 3.14, Date.from(Instant.now())));
-//        productService.saveOrUpdate(new Product("aaa", "bbb", 3.14, Date.from(Instant.now())));
-//    }
+
 }

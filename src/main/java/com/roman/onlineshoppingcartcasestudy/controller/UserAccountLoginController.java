@@ -1,10 +1,14 @@
 package com.roman.onlineshoppingcartcasestudy.controller;
 
+import com.roman.onlineshoppingcartcasestudy.model.CartItem;
+import com.roman.onlineshoppingcartcasestudy.model.Product;
 import com.roman.onlineshoppingcartcasestudy.model.Role;
 import com.roman.onlineshoppingcartcasestudy.model.UserAccount;
+import com.roman.onlineshoppingcartcasestudy.repository.ProductRepo;
 import com.roman.onlineshoppingcartcasestudy.repository.RoleRepo;
 import com.roman.onlineshoppingcartcasestudy.repository.UserAccountRepo;
 import com.roman.onlineshoppingcartcasestudy.security.AppUserAccountDetailsService;
+import com.roman.onlineshoppingcartcasestudy.services.CartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -14,6 +18,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,8 +35,13 @@ public class UserAccountLoginController {
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
+    @Autowired
+    ProductRepo productRepo;
+
     @GetMapping("/login")
     public String login() {
+        //clears the cart for new login
+        CartService.shoppingCart.clear();
         return "login";
     }
 
@@ -51,4 +61,21 @@ public class UserAccountLoginController {
         request.login(userAccount.getEmail(), password);
         return "redirect:/";
     }
+
+//    @PostMapping("/cart")
+//    public String cartDetail(@ModelAttribute("userAccount") UserAccount userAccount,
+//                             @ModelAttribute("cartItem") CartItem cartItem,
+//                             @ModelAttribute("product") Product product, HttpServletRequest request) throws ServletException {
+//        int quant = cartItem.getQuantity();
+//        List<Product> products = new ArrayList<>();
+//        products.add(productRepo.findById(2L).get());
+//        userAccount.setId(2);
+//        userAccountRepo.save(userAccount);
+//        try {
+//            request.getParts();
+//        } catch (IOException e) {
+//            throw new RuntimeException(e);
+//        }
+//        return "cart";
+//    }
 }
