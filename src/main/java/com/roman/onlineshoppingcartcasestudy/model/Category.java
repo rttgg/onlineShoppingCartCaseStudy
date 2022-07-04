@@ -1,5 +1,7 @@
 package com.roman.onlineshoppingcartcasestudy.model;
 
+import lombok.NonNull;
+
 import javax.persistence.*;
 
 @Entity
@@ -9,6 +11,8 @@ public class Category {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "category_Id")
     private int id;
+    @NonNull
+    @Column(unique = true)
     private String name;
 
 

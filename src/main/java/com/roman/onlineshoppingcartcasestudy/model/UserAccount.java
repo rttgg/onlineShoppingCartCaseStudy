@@ -6,13 +6,14 @@ import lombok.NonNull;
 import javax.validation.constraints.Email;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 public class UserAccount {
-
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @NonNull
@@ -30,15 +31,15 @@ public class UserAccount {
     private String email;
 
 
-    @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+    @ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
     @JoinTable(name = "user_role", joinColumns = {@JoinColumn(name = "USER_ID", referencedColumnName = "ID")},
             inverseJoinColumns = {@JoinColumn (name="ROLE_ID", referencedColumnName = "ID")})
-    private List<Role> roles;
+    private Set<Role> roles = new HashSet<>();
 
     public UserAccount() {
     }
 
-    public UserAccount(@NonNull String userFirstName, @NonNull String userLastName, @NonNull String password, @NonNull String email, List<Role> roles) {
+    public UserAccount(@NonNull String userFirstName, @NonNull String userLastName, @NonNull String password, @NonNull String email, Set<Role> roles) {
         this.userFirstName = userFirstName;
         this.userLastName = userLastName;
         this.password = password;
@@ -46,7 +47,12 @@ public class UserAccount {
         this.roles = roles;
     }
 
-    public UserAccount(Integer id, @NonNull String userFirstName, @NonNull String userLastName, @NonNull String password, @NonNull String email, List<Role> roles) {
+    public UserAccount(@NonNull String email, @NonNull String password) {
+        this.email = email;
+        this.password = password;
+    }
+
+    public UserAccount(Integer id, @NonNull String userFirstName, @NonNull String userLastName, @NonNull String password, @NonNull String email, Set<Role> roles) {
         this.id = id;
         this.userFirstName = userFirstName;
         this.userLastName = userLastName;
@@ -60,6 +66,14 @@ public class UserAccount {
         this.password = userAccount.getPassword();
         this.email = userAccount.getEmail();
         this.roles = userAccount.getRoles();
+    }
+
+    public UserAccount(String rom, String geb, String pass, String s) {
+
+    }
+
+    public UserAccount(Integer id) {
+        this.id = id;
     }
 
     @Override
@@ -114,11 +128,18 @@ public class UserAccount {
         this.email = email;
     }
 
-    public List<Role> getRoles() {
+    public Set<Role> getRoles() {
         return roles;
     }
 
-    public void setRoles(List<Role> roles) {
+    public void setRoles(Set<Role> roles) {
         this.roles = roles;
+    }
+
+    public void addRole(Role role) {
+        this.roles.add(role);
+    }
+    public void removeRole(Role role) {
+        this.roles.remove(role);
     }
 }

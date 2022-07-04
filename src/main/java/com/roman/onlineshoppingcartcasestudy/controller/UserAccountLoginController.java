@@ -20,7 +20,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Controller
 public class UserAccountLoginController {
@@ -54,7 +56,7 @@ public class UserAccountLoginController {
     public String postRegister(@ModelAttribute("userAccount") UserAccount userAccount, HttpServletRequest request) throws ServletException {
         String password = userAccount.getPassword();
         userAccount.setPassword(bCryptPasswordEncoder.encode(password));
-        List<Role> roles = new ArrayList<>();
+        Set<Role> roles = new HashSet<>();
         roles.add(roleRepo.findById(2).get());
         userAccount.setRoles(roles);
         userAccountRepo.save(userAccount);

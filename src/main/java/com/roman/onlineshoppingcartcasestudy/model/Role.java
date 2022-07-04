@@ -8,31 +8,40 @@ import java.util.List;
 
 @Entity
 public class Role {
-
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @NonNull
     @Column(unique = true)
     private String name;
 
-    public Role(int id, String name, List<UserAccount> userAccounts) {
+    public Role(Integer id, @NonNull String name) {
+        super();
         this.id = id;
         this.name = name;
-        this.userAccounts = userAccounts;
     }
 
-    @ManyToMany(mappedBy = "roles")
-    private List<UserAccount> userAccounts;
+    public Role(@NonNull String name) {
+        super();
+        this.name = name;
+    }
+    //    public Role(int id, String name, List<UserAccount> userAccounts) {
+//        this.id = id;
+//        this.name = name;
+//        this.userAccounts = userAccounts;
+//    }
+//
+//    @ManyToMany(mappedBy = "roles")
+//    private List<UserAccount> userAccounts;
 
     public Role() {
     }
 
-    public Role(String name, List<UserAccount> userAccounts) {
-        this.name = name;
-        this.userAccounts = userAccounts;
-    }
+//    public Role(String name, List<UserAccount> userAccounts) {
+//        this.name = name;
+//        this.userAccounts = userAccounts;
+//    }
 
     public String getName() {
         return name;
@@ -51,21 +60,21 @@ public class Role {
     }
 
 
-    public List<UserAccount> getUserAccounts() {
-        return userAccounts;
-    }
-
-    public void setUserAccounts(List<UserAccount> userAccounts) {
-        this.userAccounts = userAccounts;
-    }
-
-    @Override
-    public String toString() {
-        return "Role{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", userAccounts=" + userAccounts +
-                '}';
-    }
+//    public List<UserAccount> getUserAccounts() {
+//        return userAccounts;
+//    }
+//
+//    public void setUserAccounts(List<UserAccount> userAccounts) {
+//        this.userAccounts = userAccounts;
+//    }
+//
+//    @Override
+//    public String toString() {
+//        return "Role{" +
+//                "id=" + id +
+//                ", name='" + name + '\'' +
+//                ", userAccounts=" + userAccounts +
+//                '}';
+//    }
 
 }
