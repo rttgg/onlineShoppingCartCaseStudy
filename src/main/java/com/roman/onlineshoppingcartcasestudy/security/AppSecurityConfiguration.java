@@ -55,7 +55,7 @@ public class AppSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
                 .authorizeRequests()
                 .antMatchers("/", "/shop/**", "/register", "/h2-console/**","/cart/**", "/home/aboutus").permitAll()
-                .antMatchers("/category/**", "/products/**").hasRole("ADMIN")
+                .antMatchers("/category/**", "/products/**").hasAuthority("ROLE_ADMIN")
                 .anyRequest()
                 .authenticated()
                 .and()
