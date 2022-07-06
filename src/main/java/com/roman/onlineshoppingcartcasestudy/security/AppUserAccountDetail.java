@@ -10,9 +10,6 @@ import java.util.Collection;
 import java.util.List;
 
 public class AppUserAccountDetail implements UserDetails {
-//    public UserAccountDetail(Optional<UserAccount> userAccount) {
-//
-//    }
 
     public AppUserAccountDetail(UserAccount userAccount) {
         this.userAccount = userAccount;
@@ -20,7 +17,7 @@ public class AppUserAccountDetail implements UserDetails {
 
     UserAccount userAccount;
 
-
+/** This method returns a set of roles (authorities) to be used by Spring Security in the authorization process.**/
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         List<GrantedAuthority> authGroupList = new ArrayList<>();

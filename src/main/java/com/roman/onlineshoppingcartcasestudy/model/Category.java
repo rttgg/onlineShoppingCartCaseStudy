@@ -6,7 +6,6 @@ import javax.persistence.*;
 
 @Entity
 public class Category {
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "category_Id")
@@ -14,7 +13,6 @@ public class Category {
     @NonNull
     @Column(unique = true)
     private String name;
-
 
     public Category() {
     }

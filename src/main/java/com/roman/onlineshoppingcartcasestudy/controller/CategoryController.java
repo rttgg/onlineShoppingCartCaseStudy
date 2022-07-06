@@ -22,18 +22,12 @@ public class CategoryController {
         this.categoryService = categoryService;
     }
 
-
     @GetMapping("/admin")
     public String adminHome(Principal principal) {
         if(principal != null)
             log.info("current user: {}", principal.getName());
         return "adminHome";
     }
-
-//    @GetMapping("/admin")
-//    public String adminHome() {
-//        return "adminHome";
-//    }
 
     @GetMapping("/admin/categories")
     public String getAllCategories(Model model) {

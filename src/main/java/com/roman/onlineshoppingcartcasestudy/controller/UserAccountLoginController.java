@@ -1,7 +1,5 @@
 package com.roman.onlineshoppingcartcasestudy.controller;
 
-import com.roman.onlineshoppingcartcasestudy.model.CartItem;
-import com.roman.onlineshoppingcartcasestudy.model.Product;
 import com.roman.onlineshoppingcartcasestudy.model.Role;
 import com.roman.onlineshoppingcartcasestudy.model.UserAccount;
 import com.roman.onlineshoppingcartcasestudy.repository.ProductRepo;
@@ -18,10 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Controller
@@ -33,7 +28,6 @@ public class UserAccountLoginController {
 
     @Autowired
     AppUserAccountDetailsService service;
-
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
@@ -64,20 +58,4 @@ public class UserAccountLoginController {
         return "redirect:/";
     }
 
-//    @PostMapping("/cart")
-//    public String cartDetail(@ModelAttribute("userAccount") UserAccount userAccount,
-//                             @ModelAttribute("cartItem") CartItem cartItem,
-//                             @ModelAttribute("product") Product product, HttpServletRequest request) throws ServletException {
-//        int quant = cartItem.getQuantity();
-//        List<Product> products = new ArrayList<>();
-//        products.add(productRepo.findById(2L).get());
-//        userAccount.setId(2);
-//        userAccountRepo.save(userAccount);
-//        try {
-//            request.getParts();
-//        } catch (IOException e) {
-//            throw new RuntimeException(e);
-//        }
-//        return "cart";
-//    }
 }

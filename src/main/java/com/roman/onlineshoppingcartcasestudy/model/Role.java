@@ -3,45 +3,38 @@ package com.roman.onlineshoppingcartcasestudy.model;
 import lombok.NonNull;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
 import java.util.List;
 
 @Entity
 public class Role {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
     @NonNull
     @Column(unique = true)
     private String name;
 
-    public Role(Integer id, @NonNull String name) {
-        super();
+    public Role(int id, String name, List<UserAccount> userAccounts) {
         this.id = id;
         this.name = name;
+        this.userAccounts = userAccounts;
     }
 
-    public Role(@NonNull String name) {
-        super();
-        this.name = name;
-    }
-    //    public Role(int id, String name, List<UserAccount> userAccounts) {
-//        this.id = id;
-//        this.name = name;
-//        this.userAccounts = userAccounts;
-//    }
-//
-//    @ManyToMany(mappedBy = "roles")
-//    private List<UserAccount> userAccounts;
+    @ManyToMany(mappedBy = "roles")
+    private List<UserAccount> userAccounts;
 
     public Role() {
     }
 
-//    public Role(String name, List<UserAccount> userAccounts) {
-//        this.name = name;
-//        this.userAccounts = userAccounts;
-//    }
+    public Role(String name, List<UserAccount> userAccounts) {
+        this.name = name;
+        this.userAccounts = userAccounts;
+    }
+
+    public Role(String name) {
+        this.name = name;
+    }
 
     public String getName() {
         return name;
@@ -59,22 +52,20 @@ public class Role {
         this.id = id;
     }
 
+    public List<UserAccount> getUserAccounts() {
+        return userAccounts;
+    }
+    public void setUserAccounts(List<UserAccount> userAccounts) {
+        this.userAccounts = userAccounts;
+    }
 
-//    public List<UserAccount> getUserAccounts() {
-//        return userAccounts;
-//    }
-//
-//    public void setUserAccounts(List<UserAccount> userAccounts) {
-//        this.userAccounts = userAccounts;
-//    }
-//
-//    @Override
-//    public String toString() {
-//        return "Role{" +
-//                "id=" + id +
-//                ", name='" + name + '\'' +
-//                ", userAccounts=" + userAccounts +
-//                '}';
-//    }
+    @Override
+    public String toString() {
+        return "Role{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", userAccounts=" + userAccounts +
+                '}';
+    }
 
 }

@@ -1,5 +1,6 @@
 package com.roman.onlineshoppingcartcasestudy.controller;
 
+import com.roman.onlineshoppingcartcasestudy.model.CartItem;
 import com.roman.onlineshoppingcartcasestudy.model.Product;
 import com.roman.onlineshoppingcartcasestudy.services.CartService;
 import com.roman.onlineshoppingcartcasestudy.services.ProductService;
@@ -8,7 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 
 @Controller
@@ -16,7 +19,6 @@ public class ShoppingCartController {
 
     @Autowired
     ProductService productService;
-
 
     @GetMapping("/addToCart/{id}")
     public String addProductToCart(@PathVariable int id) {
@@ -44,9 +46,9 @@ public class ShoppingCartController {
         return "checkout";
     }
 
-//    @GetMapping("/paynow")
-//    public String payNow() {
-//        return "paynow";
-//    }
+    @PostMapping("/paynow")
+    public String payNow(@ModelAttribute("cart")CartItem cartItem) {
+        return "paynow";
+    }
 
 }
