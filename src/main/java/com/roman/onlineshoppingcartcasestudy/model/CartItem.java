@@ -5,8 +5,6 @@ import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.persistence.*;
-import java.util.List;
-
 
 @Getter
 @Setter
@@ -17,7 +15,7 @@ import java.util.List;
 public class CartItem {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     Integer id;
 
     int quantity;

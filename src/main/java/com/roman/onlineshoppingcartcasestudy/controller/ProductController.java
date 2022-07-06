@@ -11,7 +11,6 @@ import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -34,10 +33,6 @@ import java.nio.file.StandardCopyOption;
 @Controller
 @FieldDefaults(makeFinal = true, level = AccessLevel.PRIVATE)
 public class ProductController {
-//    private final String UPLOAD_DIR = "~/IdeaProjects/onlineShoppingCartStudy/files";
-
-//    @Value("${app.upload.dir:...}")
-    //public String uplaodDir = "~/IdeaProjects/onlineShoppingCartStudy/files";
     public String uplaodDir = System.getProperty("user.dir") + "/files";
 
     ProductService productService;
@@ -84,7 +79,6 @@ public class ProductController {
             redirectAttributes.addFlashAttribute("message", "select an image");
             return "redirect:/admin/products";
         }
-//        String fileName = StringUtils.cleanPath(Objects.requireNonNull(file.getOriginalFilename()));
 
 
         try

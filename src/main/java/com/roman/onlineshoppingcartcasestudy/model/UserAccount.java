@@ -1,6 +1,5 @@
 package com.roman.onlineshoppingcartcasestudy.model;
 
-
 import lombok.NonNull;
 
 import javax.validation.constraints.Email;
@@ -13,7 +12,7 @@ import java.util.Set;
 @Entity
 public class UserAccount {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
     @NonNull
@@ -31,7 +30,7 @@ public class UserAccount {
     private String email;
 
 
-    @ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+    @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     @JoinTable(name = "user_role", joinColumns = {@JoinColumn(name = "USER_ID", referencedColumnName = "ID")},
             inverseJoinColumns = {@JoinColumn (name="ROLE_ID", referencedColumnName = "ID")})
     private Set<Role> roles = new HashSet<>();
@@ -68,24 +67,8 @@ public class UserAccount {
         this.roles = userAccount.getRoles();
     }
 
-    public UserAccount(String rom, String geb, String pass, String s) {
-
-    }
-
     public UserAccount(Integer id) {
         this.id = id;
-    }
-
-    @Override
-    public String toString() {
-        return "UserAccount{" +
-                "id=" + id +
-                ", userFirstName='" + userFirstName + '\'' +
-                ", userLastName='" + userLastName + '\'' +
-                ", password='" + password + '\'' +
-                ", email='" + email + '\'' +
-                ", roles=" + roles +
-                '}';
     }
 
     public Integer getId() {

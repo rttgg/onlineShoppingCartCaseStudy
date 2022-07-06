@@ -16,14 +16,8 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @EnableWebSecurity
 public class AppSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
-
     @Autowired
     AppUserAccountDetailsService appUserAccountDetailsService;
-
-
-//    public SecurityConfiguration(UserAccountDetailsService userAccountDetailsService) {
-//        this.userAccountDetailsService = userAccountDetailsService;
-//    }
 
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
@@ -52,9 +46,8 @@ public class AppSecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-
                 .authorizeRequests()
-                .antMatchers("/", "/shop/**", "/register", "/h2-console/**","/cart/**", "/home/aboutus").permitAll()
+                .antMatchers("/", "/register", "/h2-console/**", "/home/aboutus").permitAll()
                 .antMatchers("/category/**", "/products/**").hasAuthority("ROLE_ADMIN")
                 .anyRequest()
                 .authenticated()

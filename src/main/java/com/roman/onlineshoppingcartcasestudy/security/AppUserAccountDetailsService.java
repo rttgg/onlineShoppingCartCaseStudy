@@ -26,7 +26,6 @@ public class AppUserAccountDetailsService implements UserDetailsService {
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         Optional<UserAccount> userAccount = userAccountRepo.findByEmail(email);
         userAccount.orElseThrow(() -> new UsernameNotFoundException("user not Found"));
-//        return new UserAccountDetail(userAccount);
        return new AppUserAccountDetail(userAccount.get());
     }
 }
